@@ -121,6 +121,7 @@ float dirSize(const char *sDir) {
 
     return folder_size;
 }
+
 #endif
 
 int main(int argc, char **argv) {
