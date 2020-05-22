@@ -84,7 +84,7 @@ DWORD FileSizeWin(const char * file) {
     return -1;
 }
 
-float ListDirectoryContents(const char *sDir) {
+float dirSize(const char *sDir) {
     WIN32_FIND_DATA fdFile;
     HANDLE hFind = NULL;
     float folder_size = 0.0;
@@ -109,7 +109,7 @@ float ListDirectoryContents(const char *sDir) {
 
             // Is the entity a File or Folder?
             if (fdFile.dwFileAttributes &FILE_ATTRIBUTE_DIRECTORY) {
-                folder_size += ListDirectoryContents(sPath);
+                folder_size += dirSize(sPath);
             }
             else {
                 folder_size += FileSizeWin(sPath);
@@ -160,7 +160,7 @@ int main(int argc, char **argv) {
 #ifndef WIN32
     folder_size = dirSize(path);
 #else
-    folder_size = ListDirectoryContents(path);
+    folder_size = dirSize(path);
 #endif
 
     end = clock();
